@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Information</title>
+<script>
+Resp();
+ 
+async function Resp() {
+  const response = await fetch(
+    'https://freetestapi.com/api/v1/students',
+    
+  );
+    if (!response.ok) {
+    throw new Error(`HTTP error! ${response.status}`);
+  }
+  const data = await response.json();
+ 
+ 
+    console.log(data);
+ 
+    if (data.length > 0) {
+ 
+        var base = "";
+        data.forEach((itemData) => {
+          base += "<tr>";
+          base += "<td>" + itemData.id + "</td>";
+          base += "<td>" + itemData.name + "</td>"
+          base += "<td>" + itemData.age + "</td>"
+          base += "<td>" + itemData.email + "</td></tr>";
+        });
+        document.getElementById('data').innerHTML = base;
+      }
+}
+
+
+</script>
+</head>
+<body>
+    <h1>Students Information</h1>
+    <table class="table">
+
+   <thead>
+    <tr>
+        <th> ID </th>
+        <th> name </th>
+        <th> age </th>
+        <th> email</th>
+    </tr>
+   </thead><tbody id="data">
+
+
+   </tbody> </table>
+
+     
+</body>
+</html>
